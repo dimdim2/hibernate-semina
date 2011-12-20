@@ -15,7 +15,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class HibernateGenericDao<M extends Model<ID>, ID> implements GenericDao<M, ID> {
+public class HibernateGenericDao<M extends Model<ID>, ID> implements GenericDao<M, ID> {
 
 	private Class<M> persistentClass;
 
