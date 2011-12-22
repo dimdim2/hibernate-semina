@@ -2,9 +2,6 @@ package hibernate.semina.generic;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
-@Transactional
 public abstract class AbstractGenericService<M extends Model<ID>, ID> implements GenericService<M, ID> {
 
 	protected abstract GenericDao<M, ID> getGenericDao();

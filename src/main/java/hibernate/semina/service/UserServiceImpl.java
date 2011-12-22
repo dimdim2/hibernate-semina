@@ -6,7 +6,11 @@ import hibernate.semina.generic.GenericDao;
 import hibernate.semina.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class UserServiceImpl extends AbstractGenericService<User, String> implements UserService {
 
 	@Autowired

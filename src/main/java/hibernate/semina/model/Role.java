@@ -37,6 +37,14 @@ public class Role implements Model<Long> {
 	@Column(name = "UPDATE_TIME")
 	private Date updateTime;
 
+	public Role() {
+		super();
+	}
+
+	public Role(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -76,6 +84,10 @@ public class Role implements Model<Long> {
 	public boolean addFunction(Function function) {
 		function.setRole(this);
 		return this.functions.add(function);
+	}
+
+	public void removeAllFunction() {
+		this.functions.removeAll(functions);
 	}
 
 	public boolean removeFunction(Function function) {

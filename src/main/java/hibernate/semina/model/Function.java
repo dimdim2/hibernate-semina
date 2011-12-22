@@ -29,8 +29,7 @@ public class Function implements Model<Long> {
 
 	private String name;
 
-	@Column(name = "AUTH_TYPE")
-	private String authType;
+	private String type;
 
 	private String description;
 
@@ -39,6 +38,16 @@ public class Function implements Model<Long> {
 
 	@Column(name = "UPDATE_TIME")
 	private Date updateTime;
+
+	public Function() {
+		super();
+	}
+
+	public Function(String name, String url, String type) {
+		this.name = name;
+		this.url = url;
+		this.type = type;
+	}
 
 	public Long getId() {
 		return id;
@@ -72,12 +81,12 @@ public class Function implements Model<Long> {
 		this.name = name;
 	}
 
-	public String getAuthType() {
-		return authType;
+	public String getType() {
+		return type;
 	}
 
-	public void setAuthType(String authType) {
-		this.authType = authType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getDescription() {

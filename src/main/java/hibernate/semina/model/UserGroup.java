@@ -39,8 +39,8 @@ public class UserGroup implements Model<Long> {
 	private List<Menu> availableMenus = new ArrayList<Menu>();
 
 	@ElementCollection
-	@JoinTable(name = "AUTHORITY", joinColumns = @JoinColumn(name = "GROUP_ID"))
-	private List<Authority> authorities = new ArrayList<Authority>();
+	@JoinTable(name = "GROUP_AUTH", joinColumns = @JoinColumn(name = "GROUP_ID"))
+	private List<GroupAuth> authorities = new ArrayList<GroupAuth>();
 
 	@Column(name = "CREATE_TIME")
 	private Date createTime;
@@ -93,26 +93,30 @@ public class UserGroup implements Model<Long> {
 		return false;
 	}
 
-	public List<Authority> getAuthorities() {
+	public List<GroupAuth> getAuthorities() {
 		return authorities;
 	}
 
-	public void setAuthorities(List<Authority> authorities) {
+	public void setAuthorities(List<GroupAuth> authorities) {
 		this.authorities = authorities;
 	}
 
-	public boolean addAuthority(Authority authority) {
+	public boolean addAuthority(GroupAuth authority) {
 		return this.authorities.add(authority);
 	}
 
-	public boolean removeAuthority(Authority authority) {
+	public boolean removeAllAuthority() {
+		return this.authorities.removeAll(authorities);
+	}
+
+	public boolean removeAuthority(GroupAuth authority) {
 		return this.authorities.remove(authority);
 	}
 
 	public boolean removeAuthority(Long roleId) {
-		Iterator<Authority> iter = authorities.iterator();
+		Iterator<GroupAuth> iter = authorities.iterator();
 		while (iter.hasNext()) {
-			Authority authority = iter.next();
+			GroupAuth authority = iter.next();
 			Role role = authority.getRole();
 			if (role != null && ObjectUtils.equals(role.getId(), roleId)) {
 				iter.remove();
@@ -149,6 +153,17 @@ public class UserGroup implements Model<Long> {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public boolean hasRole(Long roleId) {
+		for (GroupAuth auth : authorities) {
+			Role role = auth.getRole();
+			if (role.getId().equals(roleId)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

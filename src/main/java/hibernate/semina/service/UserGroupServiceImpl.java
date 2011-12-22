@@ -1,9 +1,9 @@
 package hibernate.semina.service;
 
-import hibernate.semina.dao.MenuDao;
+import hibernate.semina.dao.UserGroupDao;
 import hibernate.semina.generic.AbstractGenericService;
 import hibernate.semina.generic.GenericDao;
-import hibernate.semina.model.Menu;
+import hibernate.semina.model.UserGroup;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class MenuServiceImpl extends AbstractGenericService<Menu, Long> implements MenuService {
+public class UserGroupServiceImpl extends AbstractGenericService<UserGroup, Long> implements UserGroupService {
 
 	@Autowired
-	private MenuDao menuDao;
+	private UserGroupDao menuDao;
 
 	@Override
-	protected GenericDao<Menu, Long> getGenericDao() {
+	protected GenericDao<UserGroup, Long> getGenericDao() {
 		return menuDao;
 	}
 

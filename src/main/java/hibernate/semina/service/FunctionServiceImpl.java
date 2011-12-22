@@ -1,9 +1,9 @@
 package hibernate.semina.service;
 
-import hibernate.semina.dao.MenuDao;
+import hibernate.semina.dao.FunctionDao;
 import hibernate.semina.generic.AbstractGenericService;
 import hibernate.semina.generic.GenericDao;
-import hibernate.semina.model.Menu;
+import hibernate.semina.model.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,14 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class MenuServiceImpl extends AbstractGenericService<Menu, Long> implements MenuService {
+public class FunctionServiceImpl extends AbstractGenericService<Function, Long> implements FunctionService {
 
 	@Autowired
-	private MenuDao menuDao;
+	private FunctionDao menuDao;
 
 	@Override
-	protected GenericDao<Menu, Long> getGenericDao() {
+	protected GenericDao<Function, Long> getGenericDao() {
 		return menuDao;
+	}
+
+	@Override
+	public Function findByUrl(String url) {
+		return menuDao.getFindByUrl(url);
 	}
 
 }
