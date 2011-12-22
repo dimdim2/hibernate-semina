@@ -13,17 +13,17 @@ public class PaginatedListImpl implements PaginatedList {
 	private int pageNumber;
 	private String sortCriterion;
 	private SortOrderEnum sortDirection;
-	private int fullListSize;
+	private long fullListSize;
 
 	public PaginatedListImpl() {}
 
-	public PaginatedListImpl(List<?> list, int pageNumber, int fullListSize) {
+	public PaginatedListImpl(List<?> list, int pageNumber, long fullListSize) {
 		this.list = list;
 		this.fullListSize = fullListSize;
 		this.setPageNumber(pageNumber);
 	}
 
-	public PaginatedListImpl(List<?> list, int pageNumber, int fullListSize, int objectsPerPage) {
+	public PaginatedListImpl(List<?> list, int pageNumber, long fullListSize, int objectsPerPage) {
 		this.list = list;
 		this.fullListSize = fullListSize;
 		this.setPageNumber(pageNumber);
@@ -36,7 +36,7 @@ public class PaginatedListImpl implements PaginatedList {
 
 	@Override
 	public int getFullListSize() {
-		return fullListSize;
+		return (int)fullListSize;
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class PaginatedListImpl implements PaginatedList {
 	}
 
 	public int getFullPageSize() {
-		int pageSize = fullListSize / objectsPerPage;
+		int pageSize = (int)(fullListSize / objectsPerPage);
 		if ((fullListSize % objectsPerPage) > 0) {
 			pageSize++;
 		}

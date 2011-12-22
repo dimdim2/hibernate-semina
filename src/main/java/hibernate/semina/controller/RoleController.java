@@ -3,6 +3,7 @@ package hibernate.semina.controller;
 import hibernate.semina.common.PaginatedListImpl;
 import hibernate.semina.generic.Pageable;
 import hibernate.semina.model.Function;
+import hibernate.semina.model.FunctionType;
 import hibernate.semina.model.Role;
 import hibernate.semina.service.RoleService;
 
@@ -44,14 +45,14 @@ public class RoleController {
 	public ModelAndView create(@ModelAttribute Role role,
 			@RequestParam(value="functionNames", required=false) String[] functionNames,
 			@RequestParam(value="functionUrls", required=false) String[] functionUrls,
-			@RequestParam(value="functionTypes", required=false) String[] functionTypes,
+			@RequestParam(value="functionTypes", required=false) FunctionType[] functionTypes,
 			SessionStatus sessionStatus) {
 
 		if(functionNames != null && functionNames.length > 0) {
 			for(int i = 0; i < functionNames.length; i++) {
 				String name = functionNames[i];
 				String url = functionUrls[i];
-				String type = functionTypes[i];
+				FunctionType type = functionTypes[i];
 				role.addFunction(new Function(name, url, type));
 			}
 		}
@@ -123,15 +124,15 @@ public class RoleController {
 			@ModelAttribute Role role,
 			@RequestParam(value="functionNames", required=false) String[] functionNames,
 			@RequestParam(value="functionUrls", required=false) String[] functionUrls,
-			@RequestParam(value="functionTypes", required=false) String[] functionTypes,
+			@RequestParam(value="functionTypes", required=false) FunctionType[] functionTypes,
 			SessionStatus sessionStatus) {
 
-		role.removeAllFunction();
+		role.clearFunctions();
 		if(functionNames != null && functionNames.length > 0) {
 			for(int i = 0; i < functionNames.length; i++) {
 				String name = functionNames[i];
 				String url = functionUrls[i];
-				String type = functionTypes[i];
+				FunctionType type = functionTypes[i];
 				role.addFunction(new Function(name, url, type));
 			}
 		}

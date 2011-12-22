@@ -86,8 +86,8 @@ public class Role implements Model<Long> {
 		return this.functions.add(function);
 	}
 
-	public void removeAllFunction() {
-		this.functions.removeAll(functions);
+	public void clearFunctions() {
+		this.functions.clear();
 	}
 
 	public boolean removeFunction(Function function) {

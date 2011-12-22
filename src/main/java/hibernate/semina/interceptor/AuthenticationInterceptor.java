@@ -1,12 +1,16 @@
 package hibernate.semina.interceptor;
 
+import hibernate.semina.auth.Authentication;
 import hibernate.semina.auth.Authority;
+import hibernate.semina.model.Function;
+import hibernate.semina.model.FunctionType;
 import hibernate.semina.service.FunctionService;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +41,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
 		String uri = request.getRequestURI();
 		logger.debug(String.format("Requrested URI [%s]", uri));
-		/*
+
 		if (ignoreUris != null && !ignoreUris.isEmpty()) {
 			for (String excludeUrl : ignoreUris) {
 				if (matcher.match(excludeUrl, uri)) {
-					logger.debug(format("Ignore authentication [%s]", uri));
+					logger.debug(String.format("Ignore authentication [%s]", uri));
 					return true;
 				}
 			}
@@ -59,41 +63,40 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 		Authority authority = null;
 		String userId = (String)session.getAttribute("userId");
 		if (userId.equals(Authentication.SUPER_USER_ID)) {
-			logger.info(format("Request of Super user!!! [URI:%s]", uri));
+			logger.info(String.format("Request of Super user!!! [URI:%s]", uri));
 			authority = new Authority("CRUD");
 
 		} else {
 			Function function = functionService.findByUrl(uri);
 			if (function == null) {
-				logger.info(format("Access none service page!!! [URI:%s]", uri));
+				logger.info(String.format("Access none service page!!! [URI:%s]", uri));
 				response.sendRedirect("/error/noneServicePage.jsp");
 				return false;
 			}
 
 			authority = authentication.getAuthority(function.getRole().getId());
-			if (!isAuthenticate(function.getAuthType(), authority)) {
-				logger.info(format("Not authority request!!! [ID:%s, URI:%s]", userId, uri));
+			if (!isAuthenticate(function.getType(), authority)) {
+				logger.info(String.format("Not authority request!!! [ID:%s, URI:%s]", userId, uri));
 				response.sendRedirect("/error/hasNotAuthority.jsp");
 				return false;
 			}
 		}
 
 		request.setAttribute("authority", authority);
-*/
-		request.setAttribute("authority", new Authority("CRUD"));
+
 		return true;
 	}
 
-	private boolean isAuthenticate(String cmsFunctionType, Authority authority) {
-		if (cmsFunctionType.equalsIgnoreCase("ANY")) {
+	private boolean isAuthenticate(FunctionType functionType, Authority authority) {
+		if (functionType.equals(FunctionType.ANY)) {
 			return true;
-		} else if (cmsFunctionType.equalsIgnoreCase("CREATE")) {
+		} else if (functionType.equals(FunctionType.CREATE)) {
 			return authority.isCreate();
-		} else if (cmsFunctionType.equalsIgnoreCase("READ")) {
+		} else if (functionType.equals(FunctionType.READ)) {
 			return authority.isRead();
-		} else if (cmsFunctionType.equalsIgnoreCase("UPDATE")) {
+		} else if (functionType.equals(FunctionType.UPDATE)) {
 			return authority.isUpdate();
-		} else if (cmsFunctionType.equalsIgnoreCase("DELETE")) {
+		} else if (functionType.equals(FunctionType.DELETE)) {
 			return authority.isDelete();
 		}
 

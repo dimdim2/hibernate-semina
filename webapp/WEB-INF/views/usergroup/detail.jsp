@@ -21,6 +21,9 @@ function goSearch() {
 	location.href = "/usergroup/search.htm";
 }
 
+function update() {
+	location.href = "/usergroup/update.htm?id=${userGroup.id}";
+}
 </script>
 <title></title>
 
@@ -74,6 +77,7 @@ function goSearch() {
 
 	<div>
 		<input type="button" value="목록" onclick="goSearch();"/>
+		<input type="button" value="수정" onclick="update();"/>
 	</div>
 </div>
 </body>

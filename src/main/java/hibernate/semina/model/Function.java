@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,8 @@ public class Function implements Model<Long> {
 
 	private String name;
 
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private FunctionType type;
 
 	private String description;
 
@@ -43,7 +46,7 @@ public class Function implements Model<Long> {
 		super();
 	}
 
-	public Function(String name, String url, String type) {
+	public Function(String name, String url, FunctionType type) {
 		this.name = name;
 		this.url = url;
 		this.type = type;
@@ -81,11 +84,11 @@ public class Function implements Model<Long> {
 		this.name = name;
 	}
 
-	public String getType() {
+	public FunctionType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(FunctionType type) {
 		this.type = type;
 	}
 

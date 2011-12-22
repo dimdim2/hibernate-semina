@@ -9,6 +9,7 @@
 
 <style type="text/css" media="all">
 	@import url("/resources/css/common.css");
+	@import url("/resources/css/displaytag.css");
 </style>
 
 <script type="text/javascript">
@@ -55,24 +56,35 @@ function allAuthModify() {
 	</div>
 
 	<div>
-		<table>
-			<tr>
-				<td>권한</td>
-				<td>
-				<c:forEach items="${userGroup.authorities}" var="auth">
-					<label>${auth.role.name}</label>
-					<select name="${auth.role.id}">
-						<option value="N">None</option>
-						<option value="R" ${auth.authority=="R" ? "selected" : ""}>Read</option>
-						<option value="RC" ${auth.authority=="RC" ? "selected" : ""}>Read|Creat</option>
-						<option value="RCU" ${auth.authority=="RCU" ? "selected" : ""}>Read|Create|Update</option>
-						<option value="RCUD" ${auth.authority=="RCUD" ? "selected" : ""}>Read|Create|Update|Delete</option>
-					</select><br/>
+	<table>
+		<tr>
+			<td>권한</td>
+			<td>
+				<table id="functionTable" class="simple">
+				<thead>
+					<tr>
+						<th align="center" width="100">Name</th>
+						<th align="center" width="100">권한범위</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach items="${userGroup.authorities}" var="auth" varStatus="status">
+					<tr ${status.count%2 == 0 ? "class='even'" : "class='odd'" }>
+						<td>${auth.role.name}</td>
+						<td>
+							<select name="${auth.role.id}">
+								<option value="N">None</option>
+								<option value="R" ${auth.authority=="R" ? "selected" : ""}>Read</option>
+								<option value="RC" ${auth.authority=="RC" ? "selected" : ""}>Read|Creat</option>
+								<option value="RCU" ${auth.authority=="RCU" ? "selected" : ""}>Read|Create|Update</option>
+								<option value="RCUD" ${auth.authority=="RCUD" ? "selected" : ""}>Read|Create|Update|Delete</option>
+							</select><br/>
+						</td>
+					</tr>
 				</c:forEach>
-				</td>
-			</tr>
-			<tr>
-				<td>
+				</tbody>
+				</table>
+				<div style="margin: 5px;">
 					<select name="allAuth">
 						<option value="N">권한 없음</option>
 						<option value="R">조회</option>
@@ -80,10 +92,11 @@ function allAuthModify() {
 						<option value="RCU">조회|추가|수정</option>
 						<option value="RCUD">조회|추가|수정|삭제</option>
 					</select>&nbsp;&nbsp;
-					<input type="button" value="일괄권한변경" style="width: 80px;" onclick="allAuthModify()">
-				</td>
-			</tr>
-		</table>
+					<input type="button" value="일괄변경" style="width: 80px;" onclick="allAuthModify()">
+				</div>
+			</td>
+		</tr>
+	</table>
 	</div>
 
 	<div>

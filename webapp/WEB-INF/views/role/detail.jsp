@@ -22,6 +22,10 @@ function goSearch() {
 	location.href = "/role/search.htm";
 }
 
+function update() {
+	location.href = "/role/update.htm?id=${role.id}";
+}
+
 </script>
 <title></title>
 
@@ -64,12 +68,7 @@ function goSearch() {
 					<tr ${status.count%2 == 0 ? "class='even'" : "class='odd'" }>
 						<td>${function.name}</td>
 						<td>${function.url}</td>
-						<td>
-							${function.type == "C" ? "CREATE" : "" }
-							${function.type == "R" ? "READ" : "" }
-							${function.type == "U" ? "UPDATE" : "" }
-							${function.type == "D" ? "DELETE" : "" }
-						</td>
+						<td>${function.type}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -91,7 +90,9 @@ function goSearch() {
 
 	<div>
 		<input type="button" value="목록" onclick="goSearch();"/>
+		<input type="button" value="수정" onclick="update();"/>
 	</div>
+
 </div>
 </body>
 </html>

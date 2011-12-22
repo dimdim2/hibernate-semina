@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface GenericDao<M extends Model<ID>, ID> {
 
-	public int count();
+	public long count();
 
-	public int count(M model);
+	public long count(M model);
 
 	public M create(M model);
 

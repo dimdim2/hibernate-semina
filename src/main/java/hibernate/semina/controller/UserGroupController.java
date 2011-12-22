@@ -153,7 +153,7 @@ public class UserGroupController {
 
 		userGroup.setUpdateTime(new Date());
 
-		userGroup.removeAllAuthority();
+		userGroup.clearAuthorities();
 		Enumeration<String> parameterNames = request.getParameterNames();
 		while (parameterNames.hasMoreElements()) {
 			String parameterName = (String)parameterNames.nextElement();

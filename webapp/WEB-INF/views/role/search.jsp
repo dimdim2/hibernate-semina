@@ -58,36 +58,14 @@ function search() {
 <body>
 <div class="container">
 <form method="post" name="vForm" action="/role/search.htm">
-	<!-- search _ start -->
-	<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#EDEDED">
-		<tr>
-			<td><img height="8" width="8" src="/images/default/bg_box_tl.gif"/></td>
-			<td width="100%" class="box01"><img height="1" width="1" src="/images/default/bg_bin.gif"/></td>
-			<td><img height="8" width="8" src="/images/default/bg_box_tr.gif"/></td>
-		</tr>
-	</table>
-	<div align="center" class="box02" style="background-color: #EDEDED;">
 
+	<div class="searchBox">
 		<input type="text" id="name" name="name" value="${name}"/>
-
-		<span style="height:19px; width:50px; background-color:#000000; text-align:center; vertical-align:middle; display:inline-block;">
-			<a href="javascript:search()">
-				<font color="#ffffff">&nbsp;검색</font>
-			</a>
-		</span>
+		<input type="button" value="검색" onclick="search();"/>
 	</div>
-	<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#EDEDED">
-		<tr>
-			<td><img height="8" width="8" src="/images/default/bg_box_bl.gif"/></td>
-			<td width="100%" class="box03"><img height="1" width="1" src="/images/default/bg_bin.gif"/></td>
-			<td><img height="8" width="8" src="/images/default/bg_box_br.gif"/></td>
-		</tr>
-	</table>
 	<!-- search _ end -->
 
-	<display:table name="roles" id="role" class="simple" style="margin: 5px 0pt; width: 100%;"
-			requestURI="/role/search.htm" pagesize="10" export="false">
-
+	<display:table name="roles" id="role" class="grid" requestURI="/role/search.htm" pagesize="10">
 		<display:column title="ID" property="id"/>
 		<display:column title="이름" property="name"/>
 		<display:column title="생성일">
@@ -104,8 +82,6 @@ function search() {
 		</c:if>
 		</display:column>
 	</display:table>
-
-
 
 	<!-- add button start -->
 <c:if test="${authority.create}">

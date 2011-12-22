@@ -72,7 +72,7 @@ public class HibernateGenericDao<M extends Model<ID>, ID> implements GenericDao<
 	}
 
 	@Override
-	public int count() {
+	public long count() {
 		return count(null);
 	}
 
@@ -173,7 +173,7 @@ public class HibernateGenericDao<M extends Model<ID>, ID> implements GenericDao<
 	}
 
 	@Override
-	public int count(M model) {
+	public long count(M model) {
 		Criteria criteria = getCriteria(model);
 		criteria.setProjection(Projections.rowCount());
 		return ((Long)criteria.uniqueResult()).intValue();

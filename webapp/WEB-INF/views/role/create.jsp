@@ -1,3 +1,4 @@
+<%@page import="hibernate.semina.model.FunctionType"%>
 <%@page import="hibernate.semina.model.GroupAuth"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -30,10 +31,11 @@ $(document).ready(function() {
 			'</td>'+
 			'<td>'+
 				'<select name="functionTypes">'+
-					'<option value="C">CREATE</option>'+
-					'<option value="R">READ</option>'+
-					'<option value="U">UPDATE</option>'+
-					'<option value="DELETE">DELETE</option>'+
+					'<option value="<%=FunctionType.ANY%>"><%=FunctionType.ANY%></option>'+
+					'<option value="<%=FunctionType.CREATE%>"><%=FunctionType.CREATE%></option>'+
+					'<option value="<%=FunctionType.READ%>"><%=FunctionType.READ%></option>'+
+					'<option value="<%=FunctionType.UPDATE%>"><%=FunctionType.UPDATE%></option>'+
+					'<option value="<%=FunctionType.DELETE%>"><%=FunctionType.DELETE%></option>'+
 				'</select>'+
 			'</td>'+
 			'<td><input type="button" value="삭제" class="removeFunction"/></td>'+

@@ -33,7 +33,7 @@ public class UserGroup implements Model<Long> {
 	private String description;
 
 	@ManyToMany
-	@JoinTable(name = "MENU_GROUP_MAP",
+	@JoinTable(name = "GROUP_MENU_MAP",
 			joinColumns = { @JoinColumn(name = "GROUP_ID") },
 			inverseJoinColumns = { @JoinColumn(name = "MENU_ID") })
 	private List<Menu> availableMenus = new ArrayList<Menu>();
@@ -47,6 +47,14 @@ public class UserGroup implements Model<Long> {
 
 	@Column(name = "UPDATE_TIME")
 	private Date updateTime;
+
+	public UserGroup() {
+		super();
+	}
+
+	public UserGroup(Long groupId) {
+		this.id = groupId;
+	}
 
 	public Long getId() {
 		return id;
@@ -105,8 +113,8 @@ public class UserGroup implements Model<Long> {
 		return this.authorities.add(authority);
 	}
 
-	public boolean removeAllAuthority() {
-		return this.authorities.removeAll(authorities);
+	public void clearAuthorities() {
+		this.authorities.clear();
 	}
 
 	public boolean removeAuthority(GroupAuth authority) {
@@ -127,8 +135,8 @@ public class UserGroup implements Model<Long> {
 		return false;
 	}
 
-	public boolean removeAllMenu() {
-		return this.availableMenus.removeAll(availableMenus);
+	public void clearAvailableMenus() {
+		this.availableMenus.clear();
 	}
 
 	public String getDescription() {

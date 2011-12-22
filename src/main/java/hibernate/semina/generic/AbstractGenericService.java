@@ -7,12 +7,12 @@ public abstract class AbstractGenericService<M extends Model<ID>, ID> implements
 	protected abstract GenericDao<M, ID> getGenericDao();
 
 	@Override
-	public int count() {
+	public long count() {
 		return getGenericDao().count();
 	}
 
 	@Override
-	public int count(M model) {
+	public long count(M model) {
 		return getGenericDao().count(model);
 	}
 
