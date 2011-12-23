@@ -28,6 +28,12 @@ input {
 	border: 1px solid #781351
 }
 
+span {
+	padding: 1px;
+	height: 16px;
+	margin: 2px;
+}
+
 .submit input {
 	color: #000;
 	background: #ffa20f;

@@ -126,6 +126,7 @@ public class UserController {
 		sessionStatus.setComplete();
 
 		ModelAndView mav = new ModelAndView("redirect:/user/detail.htm?id=" + user.getId());
+		mav.addObject("groups", userGroupService.find());
 		return mav;
 	}
 }
