@@ -32,23 +32,21 @@ function update() {
 </head>
 <body>
 <div class="container">
-	<!-- input start -->
-	<div>
-		<label>ID</label>
-		${role.id}
-	</div>
+<fieldset>
+	<legend>Role 정보</legend>
 
-	<div>
-		<label>이름</label>
-		${role.name}
-	</div>
+	<label>ID</label>
+	${role.id}
+	<br/>
 
-	<div>
-		<label>설명</label>
-		${role.description}
-	</div>
+	<label>이름</label>
+	${role.name}
+	<br/>
 
-	<div>
+	<label>설명</label>
+	${role.description}
+	<br/>
+
 	<table>
 		<tr>
 			<td>
@@ -76,23 +74,19 @@ function update() {
 			</td>
 		</tr>
 	</table>
-	</div>
 
-	<div>
-		<label>생성일</label>
-		<fmt:formatDate value="${role.createTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>생성일</label>
+	<fmt:formatDate value="${role.createTime}" pattern="yyyy/MM/dd" />
+	<br/>
 
-	<div>
-		<label>수정일</label>
-		<fmt:formatDate value="${role.updateTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>수정일</label>
+	<fmt:formatDate value="${role.updateTime}" pattern="yyyy/MM/dd" />
+	<br/>
 
-	<div>
-		<input type="button" value="목록" onclick="goSearch();"/>
-		<input type="button" value="수정" onclick="update();"/>
-	</div>
+	<button onclick="goSearch();">목록</button>
+	<button onclick="update();">수정</button>
 
+</fieldset>
 </div>
 </body>
 </html>

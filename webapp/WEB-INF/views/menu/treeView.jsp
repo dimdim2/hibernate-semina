@@ -90,7 +90,7 @@
 					op		: menuIdx++,
 					text	: '메뉴 삭제',
 					handler	: function (){
-						if(confirm('<fmt:message key="statement.confirm.delete"/>')) {
+						if(confirm('정말 삭제하시겠습니까?')) {
 							$.ajax({
 								url: '/menu/delete.json',
 								type : "POST",
@@ -98,12 +98,10 @@
 									id : node.id
 								},
 								dataType: 'json',
-								success: function(isDelete) {
-									if(isDelete) {
-										alert('<fmt:message key="statement.delete.success"/>');
+								success: function(data) {
+									alert(data.resultMsg);
+									if(data.isSuccess) {
 										reloadTree();
-									} else {
-										alert('<fmt:message key="statement.delete.fail"/>');
 									}
 								}
 							});

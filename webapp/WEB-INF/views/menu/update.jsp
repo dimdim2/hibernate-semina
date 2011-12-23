@@ -32,52 +32,48 @@ function cancel() {
 <body>
 <div class="container" style="width: 500px;">
 <form method="post" id="vForm" name="vForm" action="/menu/update.htm">
+<fieldset>
+	<legend>메뉴 정보</legend>
 
-	<!-- input start -->
-	<div>
-		<label for="name">이름</label>
-		<input id="name" name="name" value="${menu.name}">
-	</div>
+	<label for="name">이름</label>
+	<input id="name" name="name" value="${menu.name}">
+	<br/>
 
-	<div>
-		<label for="url">URL</label>
-		<input id="url" name="url" value="${menu.url}">
-	</div>
+	<label for="url">URL</label>
+	<input id="url" name="url" value="${menu.url}">
+	<br/>
 
-	<div>
-		<label for="type">타입</label>
-		<select name="type" id="type">
-		<%	request.setAttribute("menuTypes", MenuType.values()); %>
-		<c:forEach items="${menuTypes}" var="menuType">
-			<option value="${menuType}" ${menu.type == menuType ? "selected" : "" } >${menuType}</option>
-		</c:forEach>
-		</select>
-	</div>
+	<label for="type">타입</label>
+	<select name="type" id="type">
+	<%	request.setAttribute("menuTypes", MenuType.values()); %>
+	<c:forEach items="${menuTypes}" var="menuType">
+		<option value="${menuType}" ${menu.type == menuType ? "selected" : "" } >${menuType}</option>
+	</c:forEach>
+	</select>
+	<br/>
 
-	<div>
-		<label for="description">설명</label>
-		<input id="description" name="description" value="${role.description}">
-	</div>
+	<label for="description">설명</label>
+	<input id="description" name="description" value="${role.description}">
+	<br/>
 
-	<div>
-		<label for="group.id">사용자 그룹</label>
-		<c:forEach items="${groups}" var="group">
-		<c:set var="group" value="${group}" scope="request"/>
-		<%
-			Menu menu = (Menu)request.getAttribute("menu");
-			UserGroup userGroup = (UserGroup)request.getAttribute("group");
-			boolean isAllowed = menu.isAllowedGroup(userGroup.getId());
-		%>
-			<label for="${group.id}">${group.name}</label>
-			<input type="checkbox" id="${group.id}" name="groupIds" value="${group.id}" <%= isAllowed ? "checked" : "" %>>
-		</c:forEach>
-	</div>
+	<label for="group.id">사용자 그룹</label>
+	<select multiple="multiple" name="groupIds">
+	<c:forEach items="${groups}" var="group">
+	<c:set var="group" value="${group}" scope="request"/>
+	<%
+		Menu menu = (Menu)request.getAttribute("menu");
+		UserGroup userGroup = (UserGroup)request.getAttribute("group");
+		boolean isAllowed = menu.isAllowedGroup(userGroup.getId());
+	%>
+		<option value="${group.id}" <%= isAllowed ? "selected" : "" %>>${group.name }</option>
+	</c:forEach>
+	</select>
+	<br/>
 
-	<div>
-		<input type="submit" value="저장"/>
-		<input type="button" value="취소" onclick="cancel();"/>
-	</div>
+	<button type="submit">저장</button>
+	<button type="button" onclick="cancel();">취소</button>
 
+</fieldset>
 </form>
 </div>
 </body>

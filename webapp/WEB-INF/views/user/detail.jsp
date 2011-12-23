@@ -32,36 +32,33 @@ function update() {
 </head>
 <body>
 <div class="container">
-	<!-- input start -->
-	<div>
-		<label>ID</label>
-		${user.id}
-	</div>
+<fieldset>
+	<legend>사용자 정보</legend>
 
-	<div>
-		<label>이름</label>
-		${user.name}
-	</div>
+	<label>ID</label>
+	${user.id}
+	<br/>
 
-	<div>
-		<label>사용자 그룹</label>
-		${user.group.name}
-	</div>
+	<label>이름</label>
+	${user.name}
+	<br/>
 
-	<div>
-		<label>생성일</label>
-		<fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>사용자 그룹</label>
+	${user.group.name}
+	<br/>
 
-	<div>
-		<label>수정일</label>
-		<fmt:formatDate value="${user.updateTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>생성일</label>
+	<fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd" />
+	<br/>
 
-	<div>
-		<input type="button" value="목록" onclick="goSearch();"/>
-		<input type="button" value="수정" onclick="update();"/>
-	</div>
+	<label>수정일</label>
+	<fmt:formatDate value="${user.updateTime}" pattern="yyyy/MM/dd" /><br/>
+	<br/>
+
+	<button onclick="goSearch();">목록</button>
+	<button onclick="update();">수정</button>
+
+</fieldset>
 </div>
 </body>
 </html>

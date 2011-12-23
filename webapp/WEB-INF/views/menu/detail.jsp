@@ -30,48 +30,42 @@ function update() {
 </head>
 <body>
 <div class="container" style="width: 500px;">
-	<!-- input start -->
-	<div>
-		<label>ID</label>
-		${menu.id}
-	</div>
+<fieldset>
+	<legend>메뉴 정보</legend>
 
-	<div>
-		<label>이름</label>
-		${menu.name}
-	</div>
+	<label>ID</label>
+	${menu.id}
+	<br/>
 
-	<div>
-		<label>타입</label>
-		${menu.type}
-	</div>
+	<label>이름</label>
+	${menu.name}
+	<br/>
 
-	<div>
-		<label>설명</label>
-		${menu.description}
-	</div>
+	<label>타입</label>
+	${menu.type}
+	<br/>
 
-	<div>
-		<label>접근 허용된 사용자 그룹</label>
-		<c:forEach items="${menu.allowGroups}" var="group">
-			${group.name}&nbsp;&nbsp;&nbsp;&nbsp;
-		</c:forEach>
-	</div>
+	<label>설명</label>
+	${menu.description}
+	<br/>
 
-	<div>
-		<label>생성일</label>
-		<fmt:formatDate value="${menu.createTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>사용자 그룹</label>
+	<c:forEach items="${menu.allowGroups}" var="group">
+		${group.name}&nbsp;
+	</c:forEach>
+	<br/>
 
-	<div>
-		<label>수정일</label>
-		<fmt:formatDate value="${menu.updateTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>생성일</label>
+	<fmt:formatDate value="${menu.createTime}" pattern="yyyy/MM/dd" />
+	<br/>
 
-	<div>
-		<input type="button" value="수정" onclick="update();"/>
-	</div>
+	<label>수정일</label>
+	<fmt:formatDate value="${menu.updateTime}" pattern="yyyy/MM/dd" /><br/>
+	<br/>
 
+	<button onclick="update();">수정</button>
+
+</fieldset>
 </div>
 </body>
 </html>

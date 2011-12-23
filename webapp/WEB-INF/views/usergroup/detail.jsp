@@ -10,6 +10,7 @@
 
 <style type="text/css" media="all">
 	@import url("/resources/css/common.css");
+	@import url("/resources/css/displaytag.css");
 </style>
 
 <script type="text/javascript" src="/resources/js/jquery/jquery-1.5.1.js"></script>
@@ -30,55 +31,63 @@ function update() {
 </head>
 <body>
 <div class="container">
-	<!-- input start -->
-	<div>
-		<label>ID</label>
-		${userGroup.id}
-	</div>
+<fieldset>
+	<legend>그룹 정보</legend>
 
-	<div>
-		<label>이름</label>
-		${userGroup.name}
-	</div>
+	<label>ID</label>
+	${userGroup.id}
+	<br/>
 
-	<div>
-		<label>설명</label>
-		${userGroup.description}
-	</div>
+	<label>이름</label>
+	${userGroup.name}
+	<br/>
 
-	<div>
-		<table>
-			<tr>
-				<td>권한</td>
-				<td>
-				<c:forEach items="${userGroup.authorities}" var="auth">
-					<label>${auth.role.name}</label>
-					<c:set var="auth" value="${auth}" scope="request"/>
+	<label>설명</label>
+	${userGroup.description}
+	<br/>
+
+	<table>
+		<tr>
+			<td><label>권한</label></td>
+			<td>
+				<table class="simple">
+				<thead>
+					<tr>
+						<th align="center" width="100">Name</th>
+						<th align="center" width="100">권한범위</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach items="${userGroup.authorities}" var="auth" varStatus="status">
+					<tr ${status.count%2 == 0 ? "class='even'" : "class='odd'" }>
+						<td>${auth.role.name}</td>
+						<td>
+						<c:set var="auth" value="${auth}" scope="request"/>
 					<%
 						GroupAuth auth = (GroupAuth)request.getAttribute("auth");
 						out.println(auth.getAuthString());
 					%>
-					<br/>
+						</td>
+					</tr>
 				</c:forEach>
-				</td>
-			</tr>
-		</table>
-	</div>
+				</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
 
-	<div>
-		<label>생성일</label>
-		<fmt:formatDate value="${userGroup.createTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>생성일</label>
+	<fmt:formatDate value="${userGroup.createTime}" pattern="yyyy/MM/dd" />
+	<br/>
 
-	<div>
-		<label>수정일</label>
-		<fmt:formatDate value="${userGroup.updateTime}" pattern="yyyy/MM/dd" />
-	</div>
+	<label>수정일</label>
+	<fmt:formatDate value="${userGroup.updateTime}" pattern="yyyy/MM/dd" /><br/>
+	<br/>
 
-	<div>
-		<input type="button" value="목록" onclick="goSearch();"/>
-		<input type="button" value="수정" onclick="update();"/>
-	</div>
+	<button onclick="goSearch();">목록</button>
+	<button onclick="update();">수정</button>
+
+</fieldset>
 </div>
 </body>
 </html>

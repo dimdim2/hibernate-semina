@@ -76,19 +76,17 @@ function allAuthModify() {
 <body>
 <div class="container">
 <form method="post" id="vForm" name="vForm" action="/role/create.htm">
+<fieldset>
+	<legend>Role 정보</legend>
 
-	<!-- input start -->
-	<div>
-		<label for="name">이름</label>
-		<input id="name" name="name" value="${role.name}">
-	</div>
+	<label for="name">이름</label>
+	<input id="name" name="name" value="${role.name}">
+	<br/>
 
-	<div>
-		<label for="description">설명</label>
-		<input id="description" name="description" value="${role.description}">
-	</div>
+	<label for="description">설명</label>
+	<input id="description" name="description" value="${role.description}">
+	<br/>
 
-	<div>
 	<table>
 		<tr>
 			<td>
@@ -111,13 +109,11 @@ function allAuthModify() {
 			</td>
 		</tr>
 	</table>
-	</div>
 
-	<div>
-		<input type="submit" value="저장"/>
-		<input type="button" value="취소" onclick="cancel();"/>
-	</div>
+	<button type="submit">저장</button>
+	<button type="button" onclick="cancel();">취소</button>
 
+</fieldset>
 </form>
 </div>
 </body>

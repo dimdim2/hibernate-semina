@@ -2,6 +2,7 @@ package hibernate.semina.interceptor;
 
 import hibernate.semina.auth.Authentication;
 import hibernate.semina.auth.Authority;
+import hibernate.semina.controller.SessionAttrName;
 import hibernate.semina.model.Function;
 import hibernate.semina.model.FunctionType;
 import hibernate.semina.service.FunctionService;
@@ -52,7 +53,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 		}
 
 		HttpSession session = request.getSession(true);
-		Authentication authentication = (Authentication)session.getAttribute("authentication");
+		Authentication authentication = (Authentication)session.getAttribute(SessionAttrName.AUTHENTICATION);
 
 		if (authentication == null) {
 			logger.info("Session out!!!");
@@ -61,7 +62,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 		}
 
 		Authority authority = null;
-		String userId = (String)session.getAttribute("userId");
+		String userId = (String)session.getAttribute(SessionAttrName.LOGIN_ID);
 		if (userId.equals(Authentication.SUPER_USER_ID)) {
 			logger.info(String.format("Request of Super user!!! [URI:%s]", uri));
 			authority = new Authority("CRUD");

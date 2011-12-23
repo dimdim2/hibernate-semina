@@ -52,7 +52,7 @@ public class UserGroupController {
 		}
 
 		ModelAndView mav = new ModelAndView("usergroup/create");
-		mav.addObject("userGroup", new UserGroup());
+		mav.addObject("userGroup", userGroup);
 		return mav;
 	}
 

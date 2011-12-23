@@ -38,29 +38,26 @@ function allAuthModify() {
 <body>
 <div class="container">
 <form method="post" id="vForm" name="vForm" action="/usergroup/update.htm">
+<fieldset>
+	<legend>그룹 정보</legend>
 
-	<!-- input start -->
-	<div>
-		<label for="id">ID</label>
-		<input id="id" name="id" value="${userGroup.id}" readonly="readonly">
-	</div>
+	<label for="id">ID</label>
+	<input id="id" name="id" value="${userGroup.id}" readonly="readonly">
+	<br/>
 
-	<div>
-		<label for="name">이름</label>
-		<input id="name" name="name" value="${userGroup.name}">
-	</div>
+	<label for="name">이름</label>
+	<input id="name" name="name" value="${userGroup.name}">
+	<br/>
 
-	<div>
-		<label for="description">설명</label>
-		<input id="description" name="description" value="${userGroup.description}">
-	</div>
+	<label for="description">설명</label>
+	<input id="description" name="description" value="${userGroup.description}">
+	<br/>
 
-	<div>
 	<table>
 		<tr>
-			<td>권한</td>
+			<td><label>권한</label></td>
 			<td>
-				<table id="functionTable" class="simple">
+				<table class="simple">
 				<thead>
 					<tr>
 						<th align="center" width="100">Name</th>
@@ -97,13 +94,11 @@ function allAuthModify() {
 			</td>
 		</tr>
 	</table>
-	</div>
 
-	<div>
-		<input type="submit" value="저장"/>
-		<input type="button" value="취소" onclick="cancel();"/>
-	</div>
+	<button type="submit">저장</button>
+	<button type="button" onclick="cancel();">취소</button>
 
+</fieldset>
 </form>
 </div>
 </body>

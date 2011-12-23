@@ -29,37 +29,33 @@ function cancel() {
 <body>
 <div class="container">
 <form method="post" id="vForm" name="vForm" action="/user/create.htm">
+<fieldset>
+	<legend>사용자 정보</legend>
 
-	<!-- input start -->
-	<div>
-		<label for="id">ID</label>
-		<input id="id" name="id" value="${user.id}">
-	</div>
+	<label for="id">ID</label>
+	<input id="id" name="id" value="${user.id}">
+	<br/>
 
-	<div>
-		<label for="name">이름</label>
-		<input id="name" name="name" value="${user.name}">
-	</div>
+	<label for="name">이름</label>
+	<input id="name" name="name" value="${user.name}">
+	<br/>
 
-	<div>
-		<label for="password">패스워드</label>
-		<input type="password" id="password" name="password" value="${user.password}">
-	</div>
+	<label for="password">패스워드</label>
+	<input type="password" id="password" name="password" value="${user.password}">
+	<br/>
 
-	<div>
-		<label for="group.id">사용자 그룹</label>
-		<select id="group.id" name="group.id">
-		<c:forEach items="${groups}" var="group">
-			<option value="${group.id}" ${group.id == user.group.id ? "selected" : "" }>${group.name}</option>
-		</c:forEach>
-		</select>
-	</div>
+	<label for="group.id">사용자 그룹</label>
+	<select id="group.id" name="group.id">
+	<c:forEach items="${groups}" var="group">
+		<option value="${group.id}" ${group.id == user.group.id ? "selected" : "" }>${group.name}</option>
+	</c:forEach>
+	</select>
+	<br/>
 
-	<div>
-		<input type="submit" value="저장"/>
-		<input type="button" value="취소" onclick="cancel();"/>
-	</div>
+	<button type="submit">저장</button>
+	<button type="button" onclick="cancel();">취소</button>
 
+</fieldset>
 </form>
 </div>
 </body>
