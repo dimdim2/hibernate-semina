@@ -23,7 +23,7 @@ public class FunctionServiceImpl extends AbstractGenericService<Function, Long> 
 
 	@Override
 	public Function findByUrl(String url) {
-		return menuDao.getFindByUrl(url);
+		return menuDao.findByUrl(url);
 	}
 
 }

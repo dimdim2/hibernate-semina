@@ -5,6 +5,6 @@ import hibernate.semina.model.Function;
 
 public interface FunctionDao extends GenericDao<Function, Long> {
 
-	Function getFindByUrl(String url);
+	Function findByUrl(String url);
 
 }

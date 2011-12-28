@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl extends AbstractGenericService<User, String> implements UserService {
 
 	@Autowired
-	private UserDao menuDao;
+	private UserDao userDao;
 
 	@Override
 	protected GenericDao<User, String> getGenericDao() {
-		return menuDao;
+		return userDao;
 	}
 
 }
