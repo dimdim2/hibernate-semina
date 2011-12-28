@@ -8,7 +8,7 @@
 <style type="text/css" media="all">
 	@import url("/css/common.css");
 </style>
-<title>LGW MOVISK</title>
+<title></title>
 </head>
 <body>
 	잘못된 요청입니다.

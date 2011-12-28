@@ -8,7 +8,7 @@
 <style type="text/css" media="all">
 	@import url("/css/common.css");
 </style>
-<title>LGW MOVISK</title>
+<title></title>
 </head>
 <body>
 	접속하신 계정으로는 사용할 수 없는 기능입니다.

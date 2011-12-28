@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<title>LGW MOVISK</title>
+<title></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css" media="all">
 	@import url("/css/common.css");
