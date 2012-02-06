@@ -50,7 +50,8 @@ public class MenuController {
 	}
 
 	@RequestMapping(value = "/menu/create.htm", method = RequestMethod.POST)
-	public ModelAndView create(@ModelAttribute Menu menu,
+	@ResponseBody
+	public Menu create(@ModelAttribute Menu menu,
 			@RequestParam(value = "groupIds", required = false) Long[] groupIds,
 			SessionStatus sessionStatus) {
 
@@ -64,10 +65,7 @@ public class MenuController {
 		menuService.create(menu);
 		sessionStatus.setComplete();
 
-		ModelAndView mav = new ModelAndView("menu/manager");
-		mav.addObject("reloadNodeId", menu.getParentId());
-		mav.addObject("redirectUrl", "/menu/detail.htm?id=" + menu.getId());
-		return mav;
+		return menu;
 	}
 
 	@RequestMapping("/menu/delete.json")
@@ -107,7 +105,8 @@ public class MenuController {
 	}
 
 	@RequestMapping(value = "/menu/update.htm", method = RequestMethod.POST)
-	public ModelAndView update(
+	@ResponseBody
+	public Menu update(
 			@ModelAttribute Menu menu,
 			@RequestParam(value = "groupIds", required = false) Long[] groupIds,
 			SessionStatus sessionStatus) {
@@ -123,10 +122,7 @@ public class MenuController {
 		menuService.update(menu);
 		sessionStatus.setComplete();
 
-		ModelAndView mav = new ModelAndView("menu/manager");
-		mav.addObject("reloadNodeId", menu.getParentId());
-		mav.addObject("redirectUrl", "/menu/detail.htm?id=" + menu.getId());
-		return mav;
+		return menu;
 	}
 
 	@RequestMapping("/menu/treeRender.json")

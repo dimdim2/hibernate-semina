@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<html>
-<head>
-<style type="text/css" media="all">
-	@import url("/resources/css/displaytag.css");
-	@import url("/resources/css/common.css");
-</style>
-
-<script type="text/javascript" src="/resources/js/jquery/jquery-1.5.1.js"></script>
+<%@ include file="/WEB-INF/views/include/header.inc" %>
 
 <script language="javascript">
 
@@ -53,9 +41,9 @@ function search() {
 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
-</head>
-<body>
+
+
+
 <div class="container">
 <form method="post" name="vForm" action="/role/search.htm">
 
@@ -65,7 +53,9 @@ function search() {
 	</div>
 	<!-- search _ end -->
 
-	<display:table name="roles" id="role" class="grid" requestURI="/role/search.htm" pagesize="10">
+	<display:table name="roles" id="role" class="table table-striped table-bordered table-condensed"
+			requestURI="/role/search.htm" pagesize="10">
+
 		<display:column title="ID" property="id"/>
 		<display:column title="이름" property="name"/>
 		<display:column title="생성일">
@@ -73,12 +63,12 @@ function search() {
 		</display:column>
 
 		<display:column title="명령" style="text-align:center;" media="html">
-			<input type="button" value="조회" onclick="detail('${role.id}')"/>
+			<button type="button" onclick="detail('${role.id}')">조회</button>
 		<c:if test="${authority.update}">
-			<input type="button" value="수정" onclick="update('${role.id}')"/>
+			<button type="button" onclick="update('${role.id}')">수정</button>
 		</c:if>
 		<c:if test="${authority.delete}">
-			<input type="button" value="삭제" onclick="goDelete('${role.id}')"/>
+			<button type="button" onclick="goDelete('${role.id}')">삭제</button>
 		</c:if>
 		</display:column>
 	</display:table>
@@ -93,5 +83,5 @@ function search() {
 
 </form>
 </div>
-</body>
-</html>
+
+<%@ include file="/WEB-INF/views/include/footer.inc" %>

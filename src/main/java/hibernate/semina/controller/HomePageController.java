@@ -72,7 +72,7 @@ public class HomePageController {
 
 			jsonObj.put("id", Long.toString(menu.getId()));
 			jsonObj.put("text", menu.getName());
-			jsonObj.put("url", menu.getUrl());
+			jsonObj.put("href", menu.getUrl());
 
 			MenuType menuType = menu.getType();
 			if (MenuType.LEAF.equals(menuType)) {

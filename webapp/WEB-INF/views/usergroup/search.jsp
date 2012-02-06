@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<html>
-<head>
-<style type="text/css" media="all">
-	@import url("/resources/css/displaytag.css");
-	@import url("/resources/css/common.css");
-</style>
-
-<script type="text/javascript" src="/resources/js/jquery/jquery-1.5.1.js"></script>
+<%@ include file="/WEB-INF/views/include/header.inc" %>
 
 <script language="javascript">
 
@@ -53,18 +41,17 @@ function search() {
 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
-</head>
-<body>
-<div class="container">
-<form method="post" name="vForm" action="/usergroup/search.htm">
-	<div class="searchBox">
-		<input type="text" id="name" name="name" value="${name}"/>
-		<input type="button" value="검색" onclick="search();"/>
-	</div>
-	<!-- search _ end -->
 
-	<display:table name="userGroups" id="userGroup" class="grid" requestURI="/usergroup/search.htm" pagesize="10">
+<div class="container">
+
+	<form method="post" class="well form-search" name="vForm" action="/usergroup/search.htm">
+		<input class="input-medium search-query" id="name" name="name" value="${name}"/>
+		<button type="button" class="btn" onclick="search();">검색</button>
+	</form>
+
+	<display:table name="userGroups" id="userGroup" class="table table-striped table-bordered table-condensed"
+			requestURI="/usergroup/search.htm" pagesize="10">
+
 		<display:column title="ID" property="id"/>
 		<display:column title="이름" property="name"/>
 		<display:column title="생성일">
@@ -72,25 +59,24 @@ function search() {
 		</display:column>
 
 		<display:column title="명령" style="text-align:center;" media="html">
-			<input type="button" value="조회" onclick="detail('${userGroup.id}')"/>
+			<button type="button" class="btn btn-info" onclick="detail('${userGroup.id}')">조회</button>
 		<c:if test="${authority.update}">
-			<input type="button" value="수정" onclick="update('${userGroup.id}')"/>
+			<button type="button" class="btn btn-info" onclick="update('${userGroup.id}')">수정</button>
 		</c:if>
 		<c:if test="${authority.delete}">
-			<input type="button" value="삭제" onclick="goDelete('${userGroup.id}')"/>
+			<button type="button" class="btn btn-info" onclick="goDelete('${userGroup.id}')">삭제</button>
 		</c:if>
 		</display:column>
 	</display:table>
 
 	<!-- add button start -->
 <c:if test="${authority.create}">
-	<div>
-		<input type="button" value="생성" onclick="insert()">
-	</div>
+
+	<button type="button" class="btn btn-primary" onclick="insert()">생성</button>
+
 </c:if>
 	<!-- add button end -->
 
-</form>
 </div>
-</body>
-</html>
+
+<%@ include file="/WEB-INF/views/include/footer.inc" %>

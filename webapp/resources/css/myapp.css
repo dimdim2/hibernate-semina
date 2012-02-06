@@ -1,0 +1,14 @@
+table.table thead th {
+	background-color: #EDEDED;
+	text-align: center;
+}
+
+table.table td {
+	vertical-align: middle;
+	text-align: center;
+}
+
+div.container {
+	width : 800px;
+	margin-left : 5px;
+}

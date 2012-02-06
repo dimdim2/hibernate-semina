@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<html>
-<head>
-<style type="text/css" media="all">
-	@import url("/resources/css/displaytag.css");
-	@import url("/resources/css/common.css");
-</style>
-
-<script type="text/javascript" src="/resources/js/jquery/jquery-1.5.1.js"></script>
+<%@ include file="/WEB-INF/views/include/header.inc" %>
 
 <script language="javascript">
 
@@ -53,9 +41,9 @@ function search() {
 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
-</head>
-<body>
+
+
+
 <div class="container">
 <form method="post" name="vForm" action="/user/search.htm">
 
@@ -64,7 +52,9 @@ function search() {
 		<input type="button" value="검색" onclick="search();"/>
 	</div>
 
-	<display:table name="users" id="user" class="grid" requestURI="/user/search.htm" pagesize="10">
+	<display:table name="users" id="user" class="table table-striped table-bordered table-condensed"
+			requestURI="/user/search.htm" pagesize="10">
+
 		<display:column title="ID" property="id"/>
 		<display:column title="이름" property="name"/>
 		<display:column title="생성일">
@@ -72,12 +62,12 @@ function search() {
 		</display:column>
 
 		<display:column title="명령" style="text-align:center;" media="html">
-			<input type="button" value="조회" onclick="detail('${user.id}')"/>
+			<button type="button" onclick="detail('${user.id}')">조회</button>
 		<c:if test="${authority.update}">
-			<input type="button" value="수정" onclick="update('${user.id}')"/>
+			<button type="button" onclick="update('${user.id}')">수정</button>
 		</c:if>
 		<c:if test="${authority.delete}">
-			<input type="button" value="삭제" onclick="goDelete('${user.id}')"/>
+			<button type="button" onclick="goDelete('${user.id}')">삭제</button>
 		</c:if>
 		</display:column>
 	</display:table>
@@ -92,5 +82,5 @@ function search() {
 
 </form>
 </div>
-</body>
-</html>
+
+<%@ include file="/WEB-INF/views/include/footer.inc" %>

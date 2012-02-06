@@ -1,48 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<style type="text/css" media="all">
+<%@ include file="/WEB-INF/views/include/header.inc" %>
 
-	@import url("/resources/css/displaytag.css");
-	@import url("/resources/js/extjs/resources/css/ext-all.css");
-</style>
+<link type="text/css" rel="stylesheet" href="/resources/extjs/resources/css/ext-all.css" media="all" />
 
-<script type="text/javascript" src="/resources/js/jquery/jquery-1.5.1.js"></script>
-<script src="/resources/js/extjs/adapter/ext/ext-base.js" type="text/javascript"></script>
-<script src="/resources/js/extjs/ext-all.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/resources/extjs/ext-all.js"></script>
 <script type="text/javascript">
-Ext.onReady( function() {
+Ext.require([
+	'Ext.window.Window',
+	'Ext.form.*',
+	'Ext.layout.container.Column',
+	'Ext.tab.Panel'
+]);
+
+Ext.onReady(function() {
+
+	$("body").css("backgroundColor", "#BFCCEF");
+
 	Ext.QuickTips.init();
 
-	var login = new Ext.FormPanel({
-		labelWidth :80,
+	var login = Ext.create('Ext.form.Panel', {
 		url :'/home/login.json',
 		frame :true,
 		title :'Login',
 		defaultType :'textfield',
+		fieldDefaults: {
+            msgTarget: 'side',
+            labelWidth: 80
+        },
 		monitorValid :true,
 		items : [
-		new Ext.Panel({
-			//html: '<img src="/images/LG_movisk_login.jpg"/><br/><br/>',
-			border: false
-		}),{
-			fieldLabel :'User ID',
-			name :'userId',
-			value : '',
-			anchor: '100%',
-			allowBlank :false
-		}, {
-			fieldLabel :'Password',
-			name :'password',
-			value : '',
-			anchor: '100%',
-			inputType :'password',
-			allowBlank :false
-		}],
-
+			Ext.create('Ext.panel.Panel', {
+				//html: '<img src="/resources/images/login.gif"/><br/><br/>',
+				border: false,
+				height : 210,
+				width: 565,
+				margin : '0, 0, 15, 0'
+			}),{
+				fieldLabel :'User ID',
+				name :'userId',
+				anchor: '95%',
+				allowBlank :true
+			}, {
+				fieldLabel :'Password',
+				name :'password',
+				anchor: '95%',
+				inputType :'password',
+				allowBlank :true
+			}
+		],
 		buttons : [{
 			text :'Login',
 			formBind :true,
@@ -58,7 +64,7 @@ Ext.onReady( function() {
 
 					failure : function(form, action) {
 						if (action.failureType == 'server') {
-							obj = Ext.util.JSON.decode(action.response.responseText);
+							obj = Ext.JSON.decode(action.response.responseText);
 							Ext.Msg.alert('Login Failed!', obj.errors.reason);
 						} else {
 							Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText);
@@ -70,24 +76,17 @@ Ext.onReady( function() {
 		}]
 	});
 
-	var win = new Ext.Window( {
-		layout :'fit',
-		width :585,
-		height : 150,
+	Ext.create('Ext.Window', {
+		plain: true,
+		layout: 'fit',
 		closable :false,
-		resizable :false,
+		resizable :true,
 		plain :true,
 		border :false,
 		items : [ login ]
-	});
-	win.show();
+	}).show();
 });
+
 </script>
 
-<title></title>
-</head>
-<!-- <body bgcolor="#deefbd"> -->
-<body bgcolor="#BFCCEF">
-
-</body>
-</html>
+<%@ include file="/WEB-INF/views/include/footer.inc" %>

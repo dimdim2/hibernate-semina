@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
-<frameset rows="90,*,70" frameborder="NO" border="0" framespacing="0">
+<frameset rows="75,*,70" frameborder="NO" border="0" framespacing="0">
 
 <!-- New Style Main Page -->
 	<frame src="/home/top.htm" name="topFrame" scrolling="NO" noresize>

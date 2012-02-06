@@ -1,35 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="hibernate.semina.model.MenuType"%>
 <%@page import="hibernate.semina.model.Menu"%>
 <%@page import="hibernate.semina.model.UserGroup"%>
-<%@page import="hibernate.semina.model.GroupAuth"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<style type="text/css" media="all">
-	@import url("/resources/css/common.css");
-	@import url("/resources/css/displaytag.css");
-</style>
-
-<script type="text/javascript" src="/resources/js/jquery/jquery-1.5.1.js"></script>
-<script type="text/javascript" src="/resources/js/jquery/validator/jquery.validate.js" ></script>
+<%@ include file="/WEB-INF/views/include/header.inc" %>
 
 <script type="text/javascript">
+$(document).ready(function() {
+    $("#vForm").validate({
+		onfocusout: false,
+		onkeyup: false,
+		rules: {
+			name: "required",
+		},
+
+		submitHandler: function(form) {
+			$(form).ajaxSubmit({
+				success: function(data) {
+					console.log(JSON.stringify(data));
+					var treeStore =  parent.leftFrame.treeStore;
+					var parentNode = treeStore.getNodeById('${menu.parentId}');
+					parentNode.expand(false);
+					parentNode.appendChild({
+						id : data.id,
+						text : data.name,
+						leaf : (data.type == 'LEAF' ? true : false)
+					});
+
+					document.location = "/menu/detail.htm?id=" + data.id;
+				}
+			});
+		}
+	});
+});
 
 function cancel() {
 	window.location = "/menu/search.htm";
 }
-
 </script>
-<title></title>
 
-</head>
-<body>
 <div class="container" style="width: 500px;">
 
 <form method="post" id="vForm" name="vForm" action="/menu/create.htm">
@@ -78,5 +87,5 @@ function cancel() {
 </fieldset>
 </form>
 </div>
-</body>
-</html>
+
+<%@ include file="/WEB-INF/views/include/footer.inc" %>
