@@ -22,21 +22,21 @@ function update() {
 	<div class="control-group">
 		<label>ID</label>
 		<div class="controls">
-			${userGroup.id}
+			<input readonly="readonly" value="${userGroup.id}">
 		</div>
 	</div>
 
 	<div class="control-group">
 		<label class="control-label">이름</label>
 		<div class="controls">
-			${userGroup.name}
+			<input readonly="readonly" value="${userGroup.name}">
 		</div>
 	</div>
 
 	<div class="control-group">
 		<label class="control-label">설명</label>
 		<div class="controls">
-			${userGroup.description}
+			<textarea readonly="readonly">${userGroup.description}</textarea>
 		</div>
 	</div>
 
@@ -71,14 +71,14 @@ function update() {
 	<div class="control-group">
 		<label class="control-label">생성일</label>
 		<div class="controls">
-			<fmt:formatDate value="${userGroup.createTime}" pattern="yyyy/MM/dd" />
+			<input readonly="readonly" value='<fmt:formatDate value="${userGroup.createTime}" pattern="yyyy/MM/dd" />'>
 		</div>
 	</div>
 
 	<div class="control-group">
 		<label class="control-label">수정일</label>
 		<div class="controls">
-			<fmt:formatDate value="${userGroup.updateTime}" pattern="yyyy/MM/dd" /><br/>
+			<input readonly="readonly" value='<fmt:formatDate value="${userGroup.updateTime}" pattern="yyyy/MM/dd" />'>
 		</div>
 	</div>
 
