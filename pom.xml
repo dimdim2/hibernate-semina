@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 
 	<name>hibernate-semina</name>
-	<url>http://maven.apache.org</url>
+	<url>http://dimdim.tistory.com/</url>
 
 	<properties>
 		<java.version>1.6</java.version>
@@ -280,18 +280,6 @@
 	</build>
 
 	<repositories>
-		<repository>
-			<id>MavenRepo</id>
-			<name>Maven Repository</name>
-			<url>http://repo1.maven.org/maven2</url>
-		</repository>
-
-		<repository>
-			<id>spring-maven-milestone</id>
-			<name>Springframework Maven Repository</name>
-			<url>http://maven.springframework.org/milestone</url>
-		</repository>
-
 		<repository>
 			<id>spring-maven-release</id>
 			<name>Springframework Maven Repository</name>
